@@ -18,8 +18,11 @@ ru_confirmed_longer <- ru_confirmed %>%
   )
 
 ru_confirmed_longer %>% 
-  filter(province_state=="Moscow") %>% 
-  ggplot(aes(date, num_of_confirmed_cases)) +
+  group_by(province_state, date) %>% 
+  count(num_of_confirmed_cases) %>% 
+  #View()
+  #filter(province_state=="Moscow") %>% 
+  ggplot(aes(date, n)) +
   geom_col()
 
 # ru_confirmed_longer %>% 

@@ -91,6 +91,8 @@ unemp1 %>%
   filter(hc_largefam) %>% 
   count(dismissal_reason, sort = TRUE)
 
+unem
+
 # профессия по последнему месту работы
 unemp1 %>%
   filter(hc_largefam) %>% 

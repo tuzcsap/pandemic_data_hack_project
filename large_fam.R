@@ -212,13 +212,13 @@ unemp1 %>%
 # когда увольняли(сь)
 unemp1 %>% 
   filter(hc_largefam) %>%
-  count(month_dismissal) %>% 
+  count(month_dismissal, sort = TRUE) %>% 
   ggplot(aes(month_dismissal, n))+
   geom_col()
 # когда обратились в СЗН
 unemp1 %>% 
   filter(hc_largefam) %>%
-  count(month_unemployed) %>% 
+  count(month_unemployed, sort = TRUE) %>% 
   ggplot(aes(month_unemployed, n))+
   geom_col()
 

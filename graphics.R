@@ -72,3 +72,91 @@ unemp1 %>%
   filter(hc_largefam) %>%
   filter(hc_singleparent) %>% 
   count(sort = TRUE)
+
+# ОБРАЗОВАНИЕ
+unemp1 %>%
+  filter(hc_largefam) %>%
+  count(education_filtered) %>%
+  ggplot(aes("", n, fill = education_filtered)) +
+  geom_bar(width = 1, stat = "identity", color = "white") +
+  coord_polar("y", start = 0) +
+  theme_void() +
+  labs(x = "",
+       y = "count",
+       title = "Многодетные семьи",
+       caption = "Образование безработных родителей в многодетной семье") +
+  scale_fill_brewer(palette = "Spectral")
+
+### образование
+unemp1 %>%
+  filter(hc_singleparent) %>%
+  group_by(gender) %>% 
+  count(education_filtered) %>%
+  filter(gender=="Мужской") %>% 
+  #pivot_wider(values_from = n, names_from = gender) %>% 
+  ggplot(aes("", n, fill = education_filtered)) +
+  geom_bar(width = 1, stat = "identity", color = "white") +
+  coord_polar("y", start = 0) +
+  theme_void() +
+  facet_wrap(~gender) +
+  labs(x = "",
+       y = "count",
+       title = "родители-одиночки",
+       caption = "Образование родителей-одиночек (ж)") +
+  scale_fill_brewer(palette = "Spectral")
+
+
+unemp1 %>%
+  filter(hc_largefam) %>%
+  group_by(gender) %>% 
+  count(education_filtered) %>%
+  filter(gender=="Мужской") %>% 
+  ggplot(aes("", n, fill = education_filtered)) +
+  geom_col(width = 1, stat = "identity", color = "white") +
+  coord_polar("y", start = 0) +
+  theme_void() +
+  facet_wrap(~gender) +
+  labs(x = "",
+       y = "count",
+       title = "родители-одиночки",
+       caption = "Образование родителей-одиночек") +
+  scale_fill_brewer(palette = "Spectral")
+
+unemp1 %>%
+  filter(hc_largefam) %>%
+  group_by(gender) %>% 
+  count(education_filtered) %>%
+  filter(gender=="Женский") %>% 
+  ggplot(aes("", n, fill = education_filtered)) +
+  geom_col(width = 1, stat = "identity", color = "white") +
+  coord_polar("y", start = 0) +
+  theme_void() +
+  facet_wrap(~gender) +
+  labs(x = "",
+       y = "count",
+       title = "родители-одиночки",
+       caption = "Образование родителей-одиночек") +
+  scale_fill_brewer(palette = "Spectral")
+
+## работа 
+
+  
+
+
+unemp1 %>%
+    filter(hc_singleparent) %>%
+    group_by(gender) %>%
+    count(education_filtered) %>% 
+    pivot_wider(values_from = n, names_from = gender) %>% 
+    View()
+
+# ПО ВОЗРАСТУ
+unemp1 %>% 
+  filter(hc_singleparent) %>%
+  group_by(gender) %>% 
+  count(age_new_group) %>% 
+  ggplot(aes(age_new_group, n, fill=gender))+
+  geom_col() +
+  facet_wrap(~gender, scales = "free")
+
+# 

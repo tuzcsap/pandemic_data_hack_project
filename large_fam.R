@@ -35,7 +35,7 @@ unemp1 %>%
 unemp1 %>%
   count(district, sort = TRUE)
 
-## фильтр: высшее в одно значени
+## фильтр: высшее в одно значение
 unemp1 <- unemp1 %>% 
   #mutate(education_filtered = str_replace_all(education,"Высшее", "Высшее")) %>% 
   mutate(education_filtered = ifelse(str_detect(education, "Высшее"), "Высшее образование", education))

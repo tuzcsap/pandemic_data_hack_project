@@ -143,12 +143,12 @@ unemp1 %>%
   
 
 
-unemp1 %>%
-    filter(hc_singleparent) %>%
-    group_by(gender) %>%
-    count(education_filtered) %>% 
-    pivot_wider(values_from = n, names_from = gender) %>% 
-    View()
+# unemp1 %>%
+#     filter(hc_singleparent) %>%
+#     group_by(gender) %>%
+#     count(education_filtered) %>% 
+#     pivot_wider(values_from = n, names_from = gender) %>% 
+#     View()
 
 # ПО ВОЗРАСТУ
 unemp1 %>% 
@@ -157,6 +157,6 @@ unemp1 %>%
   count(age_new_group) %>% 
   ggplot(aes(age_new_group, n, fill=gender))+
   geom_col() +
-  facet_wrap(~gender, scales = "free")
+  facet_wrap(~gender, scales = "free") -> age_bar_chart
 
-# 
+ggplotly(age_bar_chart)

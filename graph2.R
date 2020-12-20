@@ -103,14 +103,14 @@ unemp1 %>%
   #group_by(gender) %>%
   filter(gender == "Женский",
          hc_singleparent, 
-         profession_last_work != "None",
-         profession_last_work != "ANONYMIZATION") %>%
+         profession_employment,
+         profession_employment != "ANONYMIZATION") %>%
   #group_by(gender)%>%
-  count(profession_last_work) %>%
+  count(profession_employment) %>%
   top_n(10)%>%
-  mutate(profession_last_work = ifelse(str_detect(profession_last_work, "Сотрудник"), "Сотрудник обр. учреждения", profession_last_work))%>%
-  mutate(profession_last_work = factor(profession_last_work, levels = profession_last_work)) %>%
-  ggplot(aes(fct_reorder(profession_last_work, n), n, profession_last_work))+
+  #mutate(profession_employment = ifelse(str_detect(profession_employment, "Сотрудник"), "Сотрудник обр. учреждения", profession_last_work))%>%
+  mutate(profession_employment = factor(profession_last_work, levels = profession_last_work)) %>%
+  ggplot(aes(fct_reorder(profession_last_work, n), n, profession_employment))+
   geom_col(fill = "steelblue3")+
   coord_flip()+
   labs(title = "Последние места занятости среди безработных одиноких родителей-мужчин",

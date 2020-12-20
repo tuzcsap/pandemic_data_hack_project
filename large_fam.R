@@ -133,7 +133,7 @@ unemp1 %>%
   filter(hc_largefam) %>% 
   count(profession_last_educ, sort = TRUE)
 
-# пиздец
+# что тут произошло?
 unemp1 %>%
   filter(hc_largefam) %>% 
   filter(profession_last_educ=="Программист") %>% 

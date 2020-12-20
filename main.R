@@ -1,7 +1,7 @@
 library(tidyverse)
 
 unemp1 <- read_delim("/Users/mikhail/Desktop/Pandemic Data Hack/unemployed_1/unemployed_1_data.csv", delim=";")
-#sample <- read_delim("/Users/mikhail/Desktop/Pandemic Data Hack/unemployed_1/unemployed_1_sample.csv", delim=";")
+sample <- read_delim("/Users/mikhail/Desktop/Pandemic Data Hack/unemployed_1/unemployed_1_sample.csv", delim=";")
 
 unemp1 %>% count(hc_singleparent)
 
@@ -71,9 +71,22 @@ unemp1 %>%
   filter(hc_singleparent) %>% 
   count(dismissal_reason, sort = TRUE)
 
+unemp1 %>% 
+  filter(hc_singleparent) %>% 
+  count(employer_refusal_number)
+
+unemp1 %>% 
+  filter(hc_singleparent) %>% 
+  count(month_employment)
+
+unemp1 %>% 
+  filter(hc_singleparent) %>% 
+  count(profession_employment, sort = TRUE)
+
 # профессия по последнему месту работы
 unemp1 %>%
   filter(hc_singleparent) %>% 
+  group_by()
   count(profession_last_work, sort = TRUE)
 # и для всех
 unemp1 %>%
@@ -104,7 +117,7 @@ unemp1 %>%
   filter(hc_singleparent) %>% 
   count(profession_last_educ, sort = TRUE)
 
-# пиздец
+# что тут произошло?
 unemp1 %>%
   filter(hc_singleparent) %>% 
   filter(profession_last_educ=="Программист") %>% 
@@ -255,5 +268,10 @@ unemp1 <- unemp1 %>%
                                    age %in% 9:15 ~ "53-60",
                                    age == 16 ~ "60+"))
 
+# откуда отцы-одиночки
+unemp1 %>% 
+  filter(hc_singleparent) %>% 
+  group_by(gender) %>% 
+  count(gender)
 
 

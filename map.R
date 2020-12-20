@@ -52,7 +52,7 @@ rus_shp_with_names %>%
   #theme(legend.position = "none") +
   scale_fill_gradient(low = "lightblue", high = "red") +
   labs(fill = "Количество безработных",
-       title = "Уровень безработицы по регионам")
+       title = "Уровень безработицы в регионах")
 
 
 # map single
@@ -68,7 +68,7 @@ rus_shp_with_names %>%
   #theme(legend.position = "none") +
   scale_fill_gradient(low = "lightblue", high = "red") +
   labs(fill = "Количество безработных",
-       title = "Уровень безработицы одиноких родителей по регионам")
+       title = "Уровень безработицы одиноких родителей в регионах")
 
 # map многодетные
 num_of_unempl_largefam <- unemp1 %>% 
@@ -83,7 +83,7 @@ rus_shp_with_names %>%
   #theme(legend.position = "none") +
   scale_fill_gradient(low = "lightblue", high = "red") +
   labs(fill = "Количество безработных",
-       title = "Уровень безработицы многодетных родителей по регионам")
+       title = "Уровень безработицы многодетных родителей в регионах")
 
 ggplotly(single_parents_map, tooltip=c(rus_shp_with_names$n))
 # int_rus_map <- ggplotly(ggplot(rus_shp_with_names, aes(fill = rus_name)) +
@@ -203,7 +203,7 @@ rus_shp_with_names %>%
   #theme(legend.position = "none") +
   scale_fill_gradient(low = "lightblue", high = "red") +
   labs(fill = "Количество безработных",
-       title = "Уровень безработицы одиноких отцов по регионам")
+       title = "Уровень безработицы одиноких отцов в регионах")
 
 # карта с матерями-одиночками
 num_of_unempl_single_female <- unemp1 %>% 
@@ -219,5 +219,5 @@ rus_shp_with_names %>%
   #theme(legend.position = "none") +
   scale_fill_gradient(low = "lightblue", high = "red") +
   labs(fill = "Количество безработных",
-       title = "Уровень безработицы одиноких матерей по регионам")
+       title = "Уровень безработицы одиноких матерей в регионах")
 

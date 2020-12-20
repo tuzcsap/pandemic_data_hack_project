@@ -189,9 +189,35 @@ rus_shp %>%
                               name == "Perm'" ~ "Пермский край",
                               name == "Adygey" ~ "Республика Адыгея (Адыгея)")) -> rus_shp_with_names
 
-rus_shp %>% 
-  
-  ggplot(aes(name)) +
+# карта с отцами-одиночками
+num_of_unempl_single_male <- unemp1 %>% 
+  filter(hc_singleparent) %>% 
+  filter(gender == "Мужской") %>% 
+  count(region)
+
+rus_shp_with_names %>%
+  left_join(num_of_unempl_single_male, by = c("rus_name" = "region")) %>%
+  ggplot(aes(fill = n)) + 
   geom_sf() +
-  coord_sf(datum = NA)
+  coord_sf(datum = NA) +
+  #theme(legend.position = "none") +
+  scale_fill_gradient(low = "lightblue", high = "red") +
+  labs(fill = "Количество безработных",
+       title = "Уровень безработицы одиноких отцов по регионам")
+
+# карта с матерями-одиночками
+num_of_unempl_single_female <- unemp1 %>% 
+  filter(hc_singleparent) %>% 
+  filter(gender == "Женский") %>% 
+  count(region)
+
+rus_shp_with_names %>%
+  left_join(num_of_unempl_single_female, by = c("rus_name" = "region")) %>%
+  ggplot(aes(fill = n)) + 
+  geom_sf() +
+  coord_sf(datum = NA) +
+  #theme(legend.position = "none") +
+  scale_fill_gradient(low = "lightblue", high = "red") +
+  labs(fill = "Количество безработных",
+       title = "Уровень безработицы одиноких матерей по регионам")
 
